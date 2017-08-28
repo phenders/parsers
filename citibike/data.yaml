@@ -1,0 +1,27 @@
+extract:
+  - step: 1. Download JSON file
+    action: extract.source.http.DownloadFiles
+    fetch:
+      - 'https://feeds.citibikenyc.com/stations/stations.json'
+
+  - step: 2. Extract desired fields from JSON file
+    action: extract.formats.json.ReadRecords
+    basepath: stationBeanList.[*]
+    ignore_missing: True
+    extract:
+      - "stationName"
+      - "availableBikes"
+
+transform:
+  - step: 3. Set schema for output table
+    action: transform.schema.SetSchema
+    fields:
+      - name: station_name
+        type: string
+      - name: available_bikes
+        type: integer
+
+load:
+  - step: 4. Output to local CSV file
+    action: load.OutputCSV
+    repository: .

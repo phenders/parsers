@@ -1,0 +1,16 @@
+###
+# Parsefile for citibike
+# 2017-08-28
+###
+
+name: citibike
+description: "Describe the data being parsed by the citibike parser"
+maintainers:
+  - John Doe <name@domain.com>
+version: "0.1.0"
+license: none
+source_urls:
+  - "http://example.org/example.csv"
+
+extract:
+  - data.yaml
